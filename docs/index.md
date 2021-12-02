@@ -32,3 +32,112 @@ bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" 
 [comment]: <> (<img src="/img/panda-waving.png" class="panda no-zoom" style="width: 130px;height: 115px;opacity: 0.8;margin-bottom: -4px;padding-bottom:0;position: fixed;bottom: 0;left: 0.5rem;z-index: 1;"> )
 
 [comment]: <> (## 关于)
+
+<style>
+.anchor-down {
+  display: block;
+  margin: 12rem auto 0;
+  bottom: 45px;
+  width: 20px;
+  height: 20px;
+  font-size: 34px;
+  text-align: center;
+  animation: bounce-in 5s 3s infinite;
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  margin-left: -10px;
+  cursor: pointer;
+}
+@-webkit-keyframes bounce-in{
+  0%{transform:translateY(0)}
+  20%{transform:translateY(0)}
+  50%{transform:translateY(-20px)}
+  80%{transform:translateY(0)}
+  to{transform:translateY(0)}
+}
+.anchor-down::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-right: 3px solid #fff;
+  border-top: 3px solid #fff;
+  transform: rotate(135deg);
+  position: absolute;
+  bottom: 10px;
+}
+.anchor-down::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-right: 3px solid #fff;
+  border-top: 3px solid #fff;
+  transform: rotate(135deg);
+}
+</style>
+
+<script>
+export default {
+  mounted () {
+    this.initAnchorDown();
+    async  function setSiteFirstImage() {
+        let imgSrc = await (new Promise((resolve) => {
+            let tmpImage = new Image(),
+                imgSrc = `https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/${parseInt(Math.random() * 16 + 1)}.jpg`;
+            tmpImage.src = imgSrc
+            tmpImage.onload = function () {
+                resolve(imgSrc)
+            }
+            tmpImage.onerror = function () {
+                resolve(null)
+            }
+        }))
+        console.log("imgSrc::",imgSrc)
+        if(imgSrc){
+            document.querySelector('.home-wrapper .banner')
+                .style
+                .background = `url("${imgSrc}") center center / cover no-repeat`
+            document.querySelector('.body-bg')
+                .style
+                .background = `url("${imgSrc}") center center / cover no-repeat`
+        }
+    }
+    setSiteFirstImage()
+    let timer = setInterval(setSiteFirstImage,30000)
+  },
+
+  methods: { 
+    initAnchorDown(){
+       const ifJanchor = document.getElementById("JanchorDown"); 
+        ifJanchor && ifJanchor.parentNode.removeChild(ifJanchor);
+        let a = document.createElement('a');
+        a.id = 'JanchorDown';
+        a.className = 'anchor-down';
+        document.querySelector('.home-wrapper .banner').append(a);
+        let targetA = document.getElementById("JanchorDown");
+        targetA.addEventListener('click', e => { // 添加点击事件
+          this.scrollFn();
+        })
+    },
+    scrollFn() {
+      const windowH = document.querySelector('.home-wrapper .banner').clientHeight; // 获取窗口高度
+      // document.documentElement.scrollTop = windowH; // 滚动条滚动到指定位置
+      this.slideTo(windowH)
+    },
+    slideTo(targetPageY) {
+      var timer = setInterval(function () {
+          var currentY = document.documentElement.scrollTop || document.body.scrollTop;//当前及滑动中任意时刻位置
+          var distance = targetPageY > currentY ? targetPageY - currentY : currentY - targetPageY;//剩余距离
+          var speed = Math.ceil(distance/10);//每时刻速度
+          if (currentY == targetPageY) {
+           clearInterval(timer);
+          } else {
+           window.scrollTo(0,targetPageY > currentY ? currentY + speed : currentY - speed);
+          }
+         },10);
+     }
+  }
+}
+</script>
