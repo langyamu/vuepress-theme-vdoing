@@ -1,45 +1,24 @@
 // nav
+
+/*
+* !说明：以下所有link的值只是在相应md文件定义的永久链接（不是什么特殊生成的编码）。另外，注意结尾是有斜杠的
+*
+* 格式
+* {
+*   text:"显示文字"
+*   link:"跳转的链接"  // 超链接或站内链接
+*   item:[ // 子列表
+*       { text:"" , link:"" }
+*   ]
+* }
+*/
+
 module.exports = [
     {text: '首页', link: '/'},
     {
         text: '前端',
         link: '/web/', //目录页链接，此处link是vdoing主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
-        items: [
-            // 说明：以下所有link的值只是在相应md文件定义的永久链接（不是什么特殊生成的编码）。另外，注意结尾是有斜杠的
-            // {
-            //   text: '前端文章',
-            //   items: [
-            //     // { text: 'JavaScript', link: '/pages/8143cc480faf9a11/' },
-            //     // { text: 'Vue', link: '/pages/5d463fbdb172d43b/' },
-            //   ],
-            // },
-            // {
-            //   text: '学习笔记',
-            //   items: [
-            //     { text: '《JavaScript教程》', link: '/note/javascript/' },
-            //     { text: '《JavaScript高级程序设计》', link: '/note/js/' },
-            //     { text: '《ES6 教程》', link: '/note/es6/' },
-            //     { text: '《Vue》', link: '/note/vue/' },
-            //     { text: '《React》', link: '/note/react/' },
-            //     {
-            //       text: '《TypeScript 从零实现 axios》',
-            //       link: '/note/typescript-axios/',
-            //     },
-            //     {
-            //       text: '《Git》',
-            //       link: '/note/git/',
-            //     },
-            //     {
-            //       text: 'TypeScript',
-            //       link: '/pages/51afd6/',
-            //     },
-            //     {
-            //       text: 'JS设计模式总结',
-            //       link: '/pages/4643cd/',
-            //     },
-            //   ],
-            // },
-        ],
+        items: [],
     },
     {
         text: '后端',
@@ -47,15 +26,8 @@ module.exports = [
         items: [],
     },
     {
-        text: '更多',
-        link: '/more/',
-        items: [
-            // { text: '学习', link: '/pages/f2a556/' },
-            // { text: '面试', link: '/pages/aea6571b7a8bae86/' },
-            // { text: '心情杂货', link: '/pages/2d615df9a36a98ed/' },
-            // { text: '实用技巧', link: '/pages/baaa02/' },
-            {text: '友情链接', link: '/friends/'},
-        ],
+        text: 'siyuan-note',
+        link: 'https://siyuan.langyamu.cn'
     },
     {
         text: '索引',
@@ -66,14 +38,12 @@ module.exports = [
             {text: '归档', link: '/archives/'},
         ],
     },
-    // {
-    //   text: '收藏',
-    //   link: '/pages/beb6c0bd8a66cea6/',
-    //   // items: [
-    //   //   { text: '网站', link: '/pages/beb6c0bd8a66cea6/' },
-    //   //   { text: '资源', link: '/pages/eee83a9211a70f9d/' },
-    //   //   { text: 'Vue资源', link: '/pages/12df8ace52d493f6/' },
-    //   // ],
-    // },
-    {text: '关于', link: '/about/'},
+    {
+        text: '更多',
+        link: '/more/',
+        items: [
+            {text: '友情链接', link: '/friends/'},
+        ],
+    },
+    // {text: '关于', link: '/about/'},
 ]
