@@ -1,7 +1,7 @@
 // head
 module.exports = [
   // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
-  ['link', { rel: 'icon', href: 'https://q1.qlogo.cn/g?b=qq&nk=1764714737&s=640' }], //favicons，资源放在public文件夹
+  ['link', { rel: 'icon', href: 'https://cdn.jsdelivr.net/gh/langyamu/resources/avatar/2.jpg' }], //favicons，资源放在public文件夹
   [
     'meta',
     {
