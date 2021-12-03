@@ -106,9 +106,9 @@ export default {
       let imgSrc = await (new Promise((resolve) => {
         let tmpImage = new Image(),
             imgSrc = (()=>{
-                let index = parseInt(Math.random() * 21)
+                let index = parseInt(Math.random() * 21) + 1
                 index = index < 10 ? "0"+index : index
-                return `https://cdn.jsdelivr.net/gh/langyamu/resources/blogImage/${index + 1}.jpg`
+                return `https://cdn.jsdelivr.net/gh/langyamu/resources/blogImage/${index}.jpg`
             })()
 
         tmpImage.src = imgSrc
