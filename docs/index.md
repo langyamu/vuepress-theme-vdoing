@@ -80,70 +80,97 @@ bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" 
 
 <script>
 export default {
-  mounted () {
+  mounted() {
     this.initAnchorDown();
-    async  function setSiteFirstImage() {
-        let imgSrc = await (new Promise((resolve) => {
-            let tmpImage = new Image(),
-                images = Array(18).fill(null).map((item,index)=>`https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/${index + 1}.jpg`)
-            
-            images.push(...[
-                'https://ae01.alicdn.com/kf/U97bbc76ed57d4a0eb5cda490415884b1i.jpg',
-                'https://zihonghuang.gitee.io/image/bg1.jpg',
-                'https://pan.zealsay.com/zealsay/cover/5.jpg',
-                'https://pan.zealsay.com/zealsay/cover/6.jpg',
-                'https://pan.zealsay.com/zealsay/cover/7.jpg',
-                'https://pan.zealsay.com/mweb/blog/WechatIMG10.png',
-            ]),
+
+    async function setSiteFirstImage() {
+      let imgSrc = await (new Promise((resolve) => {
+        let tmpImage = new Image(),
+            images = Array(18).fill(null).map((item, index) => `https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/${index + 1}.jpg`)
+
+        images.push(...[
+          'https://ae01.alicdn.com/kf/U97bbc76ed57d4a0eb5cda490415884b1i.jpg',
+          'https://zihonghuang.gitee.io/image/bg1.jpg',
+          'https://pan.zealsay.com/zealsay/cover/5.jpg',
+          'https://pan.zealsay.com/zealsay/cover/6.jpg',
+          'https://pan.zealsay.com/zealsay/cover/7.jpg',
+          'https://pan.zealsay.com/mweb/blog/WechatIMG10.png',
+        ]),
             imgSrc = images[parseInt(Math.random() * images.length + 1)]
-                
-            tmpImage.src = imgSrc
-            tmpImage.onload = function () { resolve(imgSrc) }
-            tmpImage.onerror = function () { resolve(null) }
-        }))
-        if(imgSrc){
-            document.querySelector('.home-wrapper .banner')
-                .style
-                .background = `url("${imgSrc}") center center / cover no-repeat`
-            document.querySelector('.body-bg')
-                .style
-                .background = `url("${imgSrc}") center center / cover no-repeat`
+
+        tmpImage.src = imgSrc
+        tmpImage.onload = function () {
+          resolve(imgSrc)
         }
+        tmpImage.onerror = function () {
+          resolve(null)
+        }
+      }))
+      if (imgSrc) {
+        document.querySelector('.home-wrapper .banner')
+            .style
+            .background = `url("${imgSrc}") center center / cover no-repeat`
+        document.querySelector('.body-bg')
+            .style
+            .background = `url("${imgSrc}") center center / cover no-repeat`
+      }
     }
+
     setSiteFirstImage()
-    let timer = setInterval(setSiteFirstImage,30000)
+    let timer = setInterval(setSiteFirstImage, 30000)
   },
 
-  methods: { 
-    initAnchorDown(){
-       const ifJanchor = document.getElementById("JanchorDown"); 
-        ifJanchor && ifJanchor.parentNode.removeChild(ifJanchor);
-        let a = document.createElement('a');
-        a.id = 'JanchorDown';
-        a.className = 'anchor-down';
-        document.querySelector('.home-wrapper .banner').append(a);
-        let targetA = document.getElementById("JanchorDown");
-        targetA.addEventListener('click', e => { // 添加点击事件
-          this.scrollFn();
-        })
+  methods: {
+    initAnchorDown() {
+      const ifJanchor = document.getElementById("JanchorDown");
+      ifJanchor && ifJanchor.parentNode.removeChild(ifJanchor);
+      let a = document.createElement('a');
+      a.id = 'JanchorDown';
+      a.className = 'anchor-down';
+      document.querySelector('.home-wrapper .banner').append(a);
+      let targetA = document.getElementById("JanchorDown");
+      targetA.addEventListener('click', e => { // 添加点击事件
+        this.scrollFn();
+      })
     },
     scrollFn() {
       const windowH = document.querySelector('.home-wrapper .banner').clientHeight; // 获取窗口高度
       // document.documentElement.scrollTop = windowH; // 滚动条滚动到指定位置
-      this.slideTo(windowH)
+      this.scrollIntoView('.main-wrapper')
     },
-    slideTo(targetPageY) {
-      var timer = setInterval(function () {
-          var currentY = document.documentElement.scrollTop || document.body.scrollTop;//当前及滑动中任意时刻位置
-          var distance = targetPageY > currentY ? targetPageY - currentY : currentY - targetPageY;//剩余距离
-          var speed = Math.ceil(distance/10);//每时刻速度
-          if (currentY == targetPageY) {
-           clearInterval(timer);
+    scrollIntoView(traget) {
+      const tragetElem = document.querySelector(traget);
+      const tragetElemPostition = tragetElem.offsetTop;
+
+      // 判断是否支持新特性
+      if (
+          typeof window.getComputedStyle(document.body).scrollBehavior ==
+          "undefined"
+      ) {
+        // 当前滚动高度
+        let scrollTop =
+            document.documentElement.scrollTop || document.body.scrollTop;
+        // 滚动step方法
+        const step = function () {
+          // 距离目标滚动距离
+          let distance = tragetElemPostition - scrollTop;
+          // 目标滚动位置
+          scrollTop = scrollTop + distance / 5;
+          if (Math.abs(distance) < 1) {
+            window.scrollTo(0, tragetElemPostition);
           } else {
-           window.scrollTo(0,targetPageY > currentY ? currentY + speed : currentY - speed);
+            window.scrollTo(0, scrollTop);
+            setTimeout(step, 20);
           }
-         },10);
-     }
+        };
+        step();
+      } else {
+        tragetElem.scrollIntoView({
+          behavior: "smooth",
+          inline: "nearest"
+        });
+      }
+    }
   }
 }
 </script>
