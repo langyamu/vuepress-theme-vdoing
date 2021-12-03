@@ -1,28 +1,47 @@
 ---
 home: true
+
 # heroImage: /img/web.png
-heroText: 如影
-tagline: 书读得少，想得太多
+
+heroText: 如影 tagline: 书读得少，想得太多
+
 # actionText: 立刻进入 →
+
 # actionLink: /web/
-bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" # auto => 网格纹背景(有bodyBgImg时无背景)，默认 | none => 无 | '大图地址' | background: 自定义背景样式       提示：如发现文本颜色不适应你的背景时可以到palette.styl修改$bannerTextColor变量
+
+bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" # auto => 网格纹背景(有bodyBgImg时无背景)，默认 |
+none => 无 | '大图地址' | background: 自定义背景样式 提示：如发现文本颜色不适应你的背景时可以到palette.styl修改$bannerTextColor变量
 
 # features: # 可选的
-#  - title: 前端
-#    details: JavaScript、ES6、Vue框架等前端技术
-#   link: /web/ # 可选
-#    imgUrl: /img/web.png # 可选
-#  - title: 后端
-#    details: html(5)/css(3)，前端页面相关技术
-#    link: /back-end/
-#    imgUrl: /img/other.png
-#  - title: 技术
-#    details: 技术文档、教程、技巧、总结等文章
-#    link: /technology/
-#    imgUrl: /img/other.png
+
+# - title: 前端
+
+# details: JavaScript、ES6、Vue框架等前端技术
+
+# link: /web/ # 可选
+
+# imgUrl: /img/web.png # 可选
+
+# - title: 后端
+
+# details: html(5)/css(3)，前端页面相关技术
+
+# link: /back-end/
+
+# imgUrl: /img/other.png
+
+# - title: 技术
+
+# details: 技术文档、教程、技巧、总结等文章
+
+# link: /technology/
+
+# imgUrl: /img/other.png
 
 # 文章列表显示方式: detailed 默认，显示详细版文章列表（包括作者、分类、标签、摘要、分页等）| simple => 显示简约版文章列表（仅标题和日期）| none 不显示文章列表
+
 # postList: detailed
+
 # simplePostListLength: 10 # 简约版文章列表显示的文章数量，默认10。（仅在postList设置为simple时生效）
 ---
 
@@ -86,17 +105,11 @@ export default {
     async function setSiteFirstImage() {
       let imgSrc = await (new Promise((resolve) => {
         let tmpImage = new Image(),
-            images = Array(18).fill(null).map((item, index) => `https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/${index + 1}.jpg`)
-
-        images.push(...[
-          'https://ae01.alicdn.com/kf/U97bbc76ed57d4a0eb5cda490415884b1i.jpg',
-          'https://zihonghuang.gitee.io/image/bg1.jpg',
-          'https://pan.zealsay.com/zealsay/cover/5.jpg',
-          'https://pan.zealsay.com/zealsay/cover/6.jpg',
-          'https://pan.zealsay.com/zealsay/cover/7.jpg',
-          'https://pan.zealsay.com/mweb/blog/WechatIMG10.png',
-        ]),
-            imgSrc = images[parseInt(Math.random() * images.length + 1)]
+            imgSrc = (()=>{
+                let index = parseInt(Math.random() * 21)
+                index = index < 10 ? "0"+index : index
+                return `https://cdn.jsdelivr.net/gh/langyamu/resources/blogImage/${index + 1}.jpg`
+            })()
 
         tmpImage.src = imgSrc
         tmpImage.onload = function () {
