@@ -3,14 +3,14 @@ home: true
 
 # heroImage: /img/web.png
 
-heroText: 如影 tagline: 书读得少，想得太多
+heroText: 如影 
+tagline: 书读得少，想得太多
 
 # actionText: 立刻进入 →
 
 # actionLink: /web/
 
-bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" # auto => 网格纹背景(有bodyBgImg时无背景)，默认 |
-none => 无 | '大图地址' | background: 自定义背景样式 提示：如发现文本颜色不适应你的背景时可以到palette.styl修改$bannerTextColor变量
+bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" # auto => 网格纹背景(有bodyBgImg时无背景)，默认 |  none => 无 | '大图地址' | background: 自定义背景样式 提示：如发现文本颜色不适应你的背景时可以到palette.styl修改$bannerTextColor变量
 
 # features: # 可选的
 
