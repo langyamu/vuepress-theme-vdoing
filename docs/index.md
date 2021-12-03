@@ -85,16 +85,22 @@ export default {
     async  function setSiteFirstImage() {
         let imgSrc = await (new Promise((resolve) => {
             let tmpImage = new Image(),
-                imgSrc = `https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/${parseInt(Math.random() * 16 + 1)}.jpg`;
+                images = Array(18).fill(null).map((item,index)=>`https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/${index + 1}.jpg`)
+            
+            images.push(...[
+                'https://ae01.alicdn.com/kf/U97bbc76ed57d4a0eb5cda490415884b1i.jpg',
+                'https://zihonghuang.gitee.io/image/bg1.jpg',
+                'https://pan.zealsay.com/zealsay/cover/5.jpg',
+                'https://pan.zealsay.com/zealsay/cover/6.jpg',
+                'https://pan.zealsay.com/zealsay/cover/7.jpg',
+                'https://pan.zealsay.com/mweb/blog/WechatIMG10.png',
+            ]),
+            imgSrc = images[parseInt(Math.random() * images.length + 1)]
+                
             tmpImage.src = imgSrc
-            tmpImage.onload = function () {
-                resolve(imgSrc)
-            }
-            tmpImage.onerror = function () {
-                resolve(null)
-            }
+            tmpImage.onload = function () { resolve(imgSrc) }
+            tmpImage.onerror = function () { resolve(null) }
         }))
-        console.log("imgSrc::",imgSrc)
         if(imgSrc){
             document.querySelector('.home-wrapper .banner')
                 .style
