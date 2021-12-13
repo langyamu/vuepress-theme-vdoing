@@ -131,6 +131,8 @@ export default {
 
     setSiteFirstImage()
     let timer = setInterval(setSiteFirstImage, 30000)
+    // 网页黑白色
+    document.getElementsByTagName("html")[0]["style"]["-webkit-filter"] = "grayscale(100%)"
   },
 
   methods: {

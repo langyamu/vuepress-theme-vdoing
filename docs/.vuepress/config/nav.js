@@ -21,13 +21,9 @@ module.exports = [
         items: [],
     },
     {
-        text: '后端',
+        text: 'go',
         link: '/go/',
         items: [],
-    },
-    {
-        text: 'siyuan-note',
-        link: 'https://siyuan.langyamu.cn'
     },
     {
         text: '索引',
@@ -38,11 +34,12 @@ module.exports = [
             {text: '归档', link: '/archives/'},
         ],
     },
+    {text: '友情链接', link: '/friends/'},
     {
         text: '更多',
         link: '/more/',
         items: [
-            {text: '友情链接', link: '/friends/'},
+            {text: 'siyuan-note', link: 'https://siyuan.langyamu.cn'},
         ],
     },
     // {text: '关于', link: '/about/'},
