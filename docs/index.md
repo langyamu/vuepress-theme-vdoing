@@ -53,6 +53,13 @@ bannerBg: "https://cdn.jsdelivr.net/gh/Mu-Yan/Mu-Yan.github.io/blogsImg/18.jpg" 
 [comment]: <> (## 关于)
 
 <style>
+/* 修改 代码块字体样式--start-- */
+body .theme-vdoing-content code{
+    font-family: 'Comic Sans MS','FiraCode', mononoki, Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji', 'EmojiSymbols';
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+/* 修改 代码块字体样式--end-- */
 .anchor-down {
   display: block;
   margin: 12rem auto 0;
